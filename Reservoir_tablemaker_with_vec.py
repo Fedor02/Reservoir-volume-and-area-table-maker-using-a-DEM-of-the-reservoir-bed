@@ -23,7 +23,7 @@ rwth = rshape[1]
 rhgt = rshape[0]
 no_data = band.GetNoDataValue()
 
-#making a list of levels
+# making a list of levels
 lt = []
 for i in range(n):
     elev = min_elev + i*step
@@ -31,7 +31,7 @@ for i in range(n):
 lt = lt + levels
 lt = sorted(lt)
 
-#opening vector dataset and getting layer
+# opening vector dataset and getting layer
 vec = ogr.Open("./Vector.shp")
 layer = vec.GetLayer()
 
@@ -47,14 +47,14 @@ raster_vec = gdal.Rasterize("./Raster_vec.tiff",
 band_ras_vec = raster_vec.GetRasterBand(1)
 mask_ras_vec = band_ras_vec.ReadAsArray()
 
-#making logical filter
+# making logical filter
 flt = np.logical_and(mask_ras_vec != 0, dem != no_data)
 
-#making 1-dimension massives by filter
+# making 1-dimension massives by filter
 mask_ras_vec = mask_ras_vec[flt]
 dem_flt = dem[flt]
 
-#working with each object in vector layer
+# working with each object in vector layer
 for feature in layer:
 
     # Getting feature Name and Number
@@ -86,7 +86,7 @@ for feature in layer:
     output_name = f"{fieldName}.xlsx"
     table.to_excel(output_name)
 
-#deleting raster dataset
+# deleting raster dataset
 del raster_vec
 os.unlink("./Raster_vec.tiff")
 
