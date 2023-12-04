@@ -3,7 +3,6 @@ import numpy as np
 import pandas as pd
 import os
 
-# inputting parameters
 min_elev = float(input("Введите минимальную целевую высоту по БС, м: "))
 max_elev = float(input("Введите максимальную целевую высоту по БС, м: "))
 levels = [float(value) for value in input("Введите дополнительные уровни водохранилища (через пробел), которые вы хотите включить в таблицу, м по БС: ").split()]
